@@ -16,7 +16,6 @@ class WerkzeugProfilerInputTest < Test::Unit::TestCase
 
   CONFIG = %[
     path #{TMP_DIR}/werkzeug-profiler-test.txt
-    time_format %d-%b-%Y:%H:%M:%S
     tag test
   ]
 
@@ -27,7 +26,7 @@ class WerkzeugProfilerInputTest < Test::Unit::TestCase
   def test_configure
     d = create_driver
     assert_equal ["#{TMP_DIR}/werkzeug-profiler-test.txt"], d.instance.paths
-    assert_equal "%d-%b-%Y:%H:%M:%S", d.instance.time_format
+    assert_equal 'test', d.instance.tag
   end
 
   def test_emit
@@ -55,6 +54,7 @@ class WerkzeugProfilerInputTest < Test::Unit::TestCase
         f.puts ""
         f.puts "--------------------------------------------------------------------------------"
         f.puts ""
+        f.puts "127.0.0.1 - - [08/Nov/2013 13:16:56] \"GET / HTTP/1.1\" 200 -"
       }
       sleep 1
     end

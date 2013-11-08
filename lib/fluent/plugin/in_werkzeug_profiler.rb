@@ -3,12 +3,9 @@ module Fluent
   class WerkzeugProfilerInput < TailInput
     Plugin.register_input('werkzeug_profiler', self)
 
-    # get time format from config
-    config_param :time_format, :string, :default => '%d/%b/%Y:%H:%M:%S %z'
-
     # override
     def configure_parser(conf)
-      @parser = WerkzeugProfilerParser.new(@time_format)
+      @parser = WerkzeugProfilerParser.new
     end
 
     # override
@@ -33,12 +30,11 @@ module Fluent
     end
 
     class WerkzeugProfilerParser
-      def initialize(time_format)
-        @time_format = time_format
+      def initialize()
         @keys = ['uri', 'tot_ncalls', 'prim_ncalls', 'tottime', 'tot_percall', 'cumtime', 'cum_percall', 'filename:lineno(function)']
         @record_size = @keys.length - 2
-        @path = 'path'
-        @time = 'time'
+        @path = nil
+        @time = nil
       end
 
       def parse(values)
@@ -50,25 +46,32 @@ module Fluent
 
       def divide(lines)
         records = []
-        # remove empty lines
-        lines = lines.join('').gsub(/\n\n/, "\n").split("\n")
 
         for line in lines do
+          # remove empty lines
+          if line == "\n"
+            next
+          end
+
           if line.start_with?('-')
             @path = nil
+            @time = nil
             next
           end
 
           if line.start_with?('PATH:')
             path = line.split(nil)[1]
             @path = path[1..path.length-2]
-            @time = Time.now.strftime(@time_format)
+            @time = Time.now.to_i
             next
           end
 
-          if line.strip.split(nil)[1] == 'function' || line.strip.start_with?('ncalls', 'Ordered', 'List')
+
+          if @path == nil || @time == nil
             next
-          elsif @path != nil
+          elsif line.split(nil)[1] == 'function' || line.strip.start_with?('ncalls', 'Ordered', 'List')
+            next
+          else
             values = line.split(nil)
             # divide ncalls
             ncalls = values[0].split('/')
@@ -86,7 +89,7 @@ module Fluent
         end
 
         # return records as array
-        records
+        return records
       end
     end
   end

@@ -50,7 +50,6 @@ $ gem install fluent-plugin-werkzeug-profiler
   type werkzeug_profiler
   path path/to/werkzeug.log
   tag werkzeug.webserver
-  time_format %d-%b-%Y:%H:%M:%S
 </source>
 ```
 
