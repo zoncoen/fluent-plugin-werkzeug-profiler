@@ -1,7 +1,7 @@
 module Fluent
 
   class WerkzeugProfilerInput < TailInput
-    Plugin.register_input('werkzeug', self)
+    Plugin.register_input('werkzeug_profiler', self)
 
     # get time format from config
     config_param :time_format, :string, :default => '%d/%b/%Y:%H:%M:%S %z'
