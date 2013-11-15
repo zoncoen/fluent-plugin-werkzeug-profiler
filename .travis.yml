@@ -4,4 +4,4 @@ rvm:
     - 1.9.3
     - 2.0.0
 
-script: rake test
+script: TEST_OPTS='-v' bundle exec rake test
