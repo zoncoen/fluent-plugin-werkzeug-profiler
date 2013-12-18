@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/zoncoen/fluent-plugin-werkzeug-profiler.png?branch=master)](https://travis-ci.org/zoncoen/fluent-plugin-werkzeug-profiler)
 [![Coverage Status](https://coveralls.io/repos/zoncoen/fluent-plugin-werkzeug-profiler/badge.png)](https://coveralls.io/r/zoncoen/fluent-plugin-werkzeug-profiler)
 [![Code Climate](https://codeclimate.com/github/zoncoen/fluent-plugin-werkzeug-profiler.png)](https://codeclimate.com/github/zoncoen/fluent-plugin-werkzeug-profiler)
+[![Dependency Status](https://gemnasium.com/zoncoen/fluent-plugin-werkzeug-profiler.png)](https://gemnasium.com/zoncoen/fluent-plugin-werkzeug-profiler)
 
 # fluent-plugin-werkzeug-profiler
 
