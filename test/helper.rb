@@ -22,6 +22,9 @@ unless ENV.has_key?('VERBOSE')
   $log = nulllogger
 end
 
+require 'coveralls'
+Coveralls.wear!
+
 require 'fluent/plugin/in_tail'
 require 'fluent/plugin/in_werkzeug_profiler'
 

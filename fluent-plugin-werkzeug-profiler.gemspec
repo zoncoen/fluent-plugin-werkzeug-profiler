@@ -3,7 +3,7 @@
 Gem::Specification.new do |gem|
   gem.name          = "fluent-plugin-werkzeug-profiler"
   gem.version       = "0.0.3"
-  gem.authors       = ["Kenta MORI"]
+  gem.authors       = ["Kenta Mori"]
   gem.email         = ["zoncoen@gmail.com"]
   gem.description   = %q{Fluent input plugin for Werkzeug WSGI application profiler statistics.}
   gem.summary       = %q{Fluent input plugin for Werkzeug WSGI application profiler statistics.}
